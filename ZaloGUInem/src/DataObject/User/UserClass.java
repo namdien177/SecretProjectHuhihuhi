@@ -45,8 +45,11 @@ public class UserClass {
         this.avatar = avatar;
     }
 
-    public int getUserGender() {
-        return userGender;
+    public String getUserGender() {
+        if (userGender == 1)
+            return "Male";
+        else
+            return "Female";
     }
 
     public void setUserGender(int userGender) {
