@@ -17,7 +17,12 @@ public class MainFunctionWindows {
     public JFXButton ExportBtn;
     public JFXButton SendMessageBtn;
 
-    String[] UserPhoneList = null;
+    private String[] UserPhoneList = null;
+
+    /*
+    Method lấy toàn bộ text từ textarea và tách nó thành các số điện thoại hoàn chỉnh để đưa vào list và thực hiện thao tác
+    tìm kiếm trên zalo (thông tin user)
+     */
     @FXML
     private void GetPhoneNumber(){
         String getText = PhoneField.getText();
