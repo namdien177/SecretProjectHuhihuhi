@@ -55,6 +55,7 @@ public class ImageUploadFunction {
                 gif.setWidth(100);
 
                 JsonObject jsonObject = oaClient.sendGifMessage(anUser.getUserId(), gif);
+                System.out.println(jsonObject);
                 return new ZaloOAAccess().CheckSendingCondition(jsonObject);                //return true if message was sent
 
             }else if (absolutePart.equals("-1")){
