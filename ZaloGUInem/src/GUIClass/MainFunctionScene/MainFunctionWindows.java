@@ -141,6 +141,8 @@ public class MainFunctionWindows implements Initializable {
      */
     @FXML
     private void GetPhoneNumber(){
+        ListCustomer.getItems().clear();
+        ListCustomerFound.clear();
         String getText = PhoneField.getText();
         if (getText == null || Objects.equals(getText, "")){
             System.out.println("dit");

@@ -1,8 +1,12 @@
 package DataObject.FunctionCustomized;
 
 import DataObject.Initialize_Zalo_Subject.ZaloOAAccess;
+import DataObject.User.UserClass;
 import com.google.gson.JsonObject;
+import com.vng.zalo.sdk.APIException;
 import com.vng.zalo.sdk.oa.ZaloOaClient;
+import com.vng.zalo.sdk.oa.message.MsgGif;
+import com.vng.zalo.sdk.oa.message.MsgImage;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -25,21 +29,52 @@ public class ImageUploadFunction {
 
     public String getIDUploadPicture(){
         File uploaded = getFileUpload();
-        String IDupload = "-1";
+        String PathImage = "-1";
         try{
-            String absolutePath = uploaded.getAbsolutePath();
-            if (absolutePath.contains(".gif")){
-                JsonObject ret = oaClient.uploadGifPhoto(absolutePath);
-                IDupload = new ZaloOAAccess().ConvertJsonToImageObject(ret).getImageId();
-                return IDupload;
-            }else{
-                JsonObject ret = oaClient.uploadPhoto(absolutePath);
-                IDupload = new ZaloOAAccess().ConvertJsonToImageObject(ret).getImageId();
-                return IDupload;
-            }
+            System.out.println(uploaded.getAbsolutePath());
+            return uploaded.getAbsolutePath();
         }catch (Exception e){
             System.out.println("Error" + e.getMessage());
-            return IDupload;
+            return PathImage;
         }
+    }
+
+    public boolean SendImage_Gif(UserClass anUser, String desc, String absolutePart){
+        System.out.println("step 1.1");
+        try{
+            if (absolutePart.contains(".gif")){
+                System.out.println("step 1.1.1");
+                JsonObject ret = oaClient.uploadGifPhoto(absolutePart);
+                String IDupload = new ZaloOAAccess().ConvertJsonToImageObject(ret).getImageId();
+                System.out.println(ret);
+                System.out.println(IDupload + " = > ID picture");
+
+                MsgGif gif = new MsgGif();
+                gif.setImageid(IDupload);
+                gif.setHeight(100);
+                gif.setWidth(100);
+
+                JsonObject jsonObject = oaClient.sendGifMessage(anUser.getUserId(), gif);
+                return new ZaloOAAccess().CheckSendingCondition(jsonObject);                //return true if message was sent
+
+            }else if (absolutePart.equals("-1")){
+                System.out.println("step 1.1.2");
+                return false;
+            }else{
+                JsonObject ret = oaClient.uploadPhoto(absolutePart);
+                System.out.println(ret +"   =>RET png");
+                String IDupload = new ZaloOAAccess().ConvertJsonToImageObject(ret).getImageId();
+
+                MsgImage image = new MsgImage();
+                image.setImageid(IDupload);
+                image.setMessage(desc);
+                JsonObject jsonObject = oaClient.sendImageMessage(anUser.getUserId(), image);
+                return new ZaloOAAccess().CheckSendingCondition(jsonObject);                //return true if message was sent
+            }
+        }catch (APIException api){
+            System.out.println("Error: " + api.getMessage());
+            return false;
+        }
+
     }
 }

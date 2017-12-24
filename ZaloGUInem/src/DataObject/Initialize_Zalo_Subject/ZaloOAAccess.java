@@ -2,9 +2,7 @@ package DataObject.Initialize_Zalo_Subject;
 
 import DataObject.Message.ImageClass;
 import DataObject.User.UserClass;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import com.vng.zalo.sdk.oa.ZaloOaClient;
 import com.vng.zalo.sdk.oa.ZaloOaInfo;
 
@@ -55,5 +53,30 @@ public class ZaloOAAccess {
         Convert string dạng Json sang Java class và return.
          */
         return gson.fromJson(result,ImageClass.class);
+    }
+
+    public boolean CheckSendingCondition(JsonObject json){
+        Gson gson = new Gson();
+        JsonPrimitive booleanvalue = gson.fromJson(json.getAsJsonPrimitive("errorCode"), JsonPrimitive.class);
+        return booleanvalue.getAsBoolean();
+    }
+}
+
+class messCondition{
+    private boolean errorCode;
+
+    public messCondition() {
+    }
+
+    public messCondition(boolean errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public boolean getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(boolean errorCode) {
+        this.errorCode = errorCode;
     }
 }

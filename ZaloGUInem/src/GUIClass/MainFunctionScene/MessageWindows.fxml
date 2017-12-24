@@ -24,7 +24,7 @@
                   <Font name="System Bold" size="10.0" />
                </font>
             </JFXButton>
-            <JFXTextField layoutX="100.0" layoutY="222.0" prefHeight="26.0" prefWidth="240.0" promptText="Picture description" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="10.0" />
+            <JFXTextField fx:id="PicDesc" layoutX="100.0" layoutY="222.0" prefHeight="26.0" prefWidth="240.0" promptText="Picture description" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="10.0" />
          </children>
       </AnchorPane>
       <JFXButton fx:id="CancelBtn" layoutX="14.0" layoutY="250.0" onAction="#CloseBtnClicked" style="-fx-background-color: #898989; -fx-background-radius: 0;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="620.0" AnchorPane.topAnchor="250.0">
