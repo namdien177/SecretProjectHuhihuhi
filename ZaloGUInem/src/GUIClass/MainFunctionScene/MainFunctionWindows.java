@@ -5,16 +5,24 @@ import DataObject.FunctionCustomized.UserFunction;
 import DataObject.User.UserClass;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +30,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainFunctionWindows implements Initializable {
+    //  Test number: 01664708402
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*
     GUI Variables
@@ -86,17 +95,43 @@ public class MainFunctionWindows implements Initializable {
             ListCustomer.getColumns().addAll(IDCustCol,CustNameCol, GenderCol, PhoneCustCol);
         }
         /////////////////////////////ADDING LISTENER////////////////////////////////
-        ListCustomer.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) ->{
+        /*ListCustomer.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) ->{
             if (newValue != null){
                 GetOneCustomer(newValue.getUserId());       //Use to send mess to one customer
                 SendMessageBtn.setDisable(false);
             }else {
                 SendMessageBtn.setDisable(true);
             }
-        }));
+        }));*/
+        ListCustomer.getItems().addListener((ListChangeListener<UserClass>) c -> {
+            if (!ListCustomer.getItems().isEmpty()) {
+                SendMessageBtn.setDisable(false);
+                ExportBtn.setDisable(false);
+            } else {
+                SendMessageBtn.setDisable(true);
+                ExportBtn.setDisable(true);
+            }
+        });
         /////////////////////////////END SETUP TABLE////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
 
+        /*
+        Adding listener cho textarea để enable button.
+
+        PhoneField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null || newValue != ""){
+                AddBtn.setDisable(false);
+            }else{
+                AddBtn.setDisable(true);
+            }
+        });*/
+        PhoneField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (observable == null){
+                AddBtn.setDisable(true);
+            }else {
+                AddBtn.setDisable(false);
+            }
+        });
     }
 
 
@@ -149,6 +184,23 @@ public class MainFunctionWindows implements Initializable {
      */
     private void GetOneCustomer(long userId) {
 
+    }
+
+    /*
+    Send Message to all customer on list
+     */
+    @FXML
+    private void SendMessageToAll() throws IOException {
+        if (!ListCustomerFound.isEmpty()){
+            MessageWindows.CustomerZalo = ListCustomerFound;
+            System.out.println("List does not empty");
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("MessageWindows.fxml"));
+            Stage newstage = new Stage();
+            newstage.setScene(new Scene(anchorPane));
+            newstage.initStyle(StageStyle.UNDECORATED);
+            newstage.initModality(Modality.APPLICATION_MODAL);
+            newstage.showAndWait();
+        }
     }
 
     @FXML

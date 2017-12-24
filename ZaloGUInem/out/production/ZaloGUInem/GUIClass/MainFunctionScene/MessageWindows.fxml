@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIClass.MainFunctionScene.MessageWindows">
    <children>
       <JFXTextArea fx:id="MessageContentInput" focusColor="#098547" layoutX="70.0" layoutY="45.0" prefHeight="190.0" prefWidth="330.0" promptText="Enter message content here" style="-fx-border-color: #098547;" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="40.0" />
@@ -28,12 +27,12 @@
             <JFXTextField layoutX="100.0" layoutY="222.0" prefHeight="26.0" prefWidth="240.0" promptText="Picture description" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="10.0" />
          </children>
       </AnchorPane>
-      <JFXButton layoutX="10.0" layoutY="258.0" style="-fx-background-color: #098547; -fx-background-radius: 0;" text="Send Message" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="250.0">
+      <JFXButton fx:id="CancelBtn" layoutX="14.0" layoutY="250.0" onAction="#CloseBtnClicked" style="-fx-background-color: #898989; -fx-background-radius: 0;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="620.0" AnchorPane.topAnchor="250.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="14.0" layoutY="250.0" style="-fx-background-color: #898989; -fx-background-radius: 0;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="620.0" AnchorPane.topAnchor="250.0">
+      <JFXButton fx:id="SendMessageBtn" layoutX="10.0" layoutY="258.0" onAction="#SendMessageBtnClicked" style="-fx-background-color: #098547; -fx-background-radius: 0;" text="Send Message" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="250.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
