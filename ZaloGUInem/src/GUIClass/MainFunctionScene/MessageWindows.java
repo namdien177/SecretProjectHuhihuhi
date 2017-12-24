@@ -2,7 +2,6 @@ package GUIClass.MainFunctionScene;
 
 import DataObject.FunctionCustomized.MessageFunction;
 import DataObject.User.UserClass;
-import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.fxml.FXML;
@@ -15,6 +14,7 @@ public class MessageWindows {
     Class Variables
      */
     public static List<UserClass> CustomerZalo;
+    private static String uploadFileID;
 
     /*
     GUI Variables
@@ -28,8 +28,9 @@ public class MessageWindows {
         if (!CustomerZalo.isEmpty()){
             for (UserClass user :
                     CustomerZalo) {
-                boolean result = new MessageFunction().SendMessage(user,MessageContentInput.getText());
-                if (result){
+                boolean resultMess = new MessageFunction().SendMessage(user,MessageContentInput.getText());
+
+                if (resultMess && uploadFileID!=null){
                     System.out.println("Send Message Succeed for user: "+user.getUserId() +" | "+user.getDisplayName());
                     Stage oldStage = (Stage) SendMessageBtn.getScene().getWindow();        //get stage by btn
                     oldStage.close();
@@ -38,6 +39,11 @@ public class MessageWindows {
                     System.out.println("Send Message Failed for user: "+user.getUserId() +" | "+user.getDisplayName());
             }
         }
+    }
+
+    @FXML
+    private void UploadImage(){
+        uploadFileID = new MessageFunction().getIDUploadPicture();
     }
 
     @FXML

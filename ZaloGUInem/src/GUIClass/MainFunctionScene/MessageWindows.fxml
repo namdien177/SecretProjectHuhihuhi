@@ -19,7 +19,7 @@
       <AnchorPane layoutX="138.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
          <children>
             <ImageView fx:id="MessagePicture" fitHeight="200.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <JFXButton style="-fx-background-color: #f0f0f0;" text="Upload Picture" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="210.0">
+            <JFXButton onAction="#UploadImage" style="-fx-background-color: #f0f0f0;" text="Upload Picture" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="210.0">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>

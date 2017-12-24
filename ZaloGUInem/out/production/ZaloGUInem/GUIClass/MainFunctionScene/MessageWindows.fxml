@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIClass.MainFunctionScene.MessageWindows">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="720.0" style="-fx-border-color: green; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIClass.MainFunctionScene.MessageWindows">
    <children>
       <JFXTextArea fx:id="MessageContentInput" focusColor="#098547" layoutX="70.0" layoutY="45.0" prefHeight="190.0" prefWidth="330.0" promptText="Enter message content here" style="-fx-border-color: #098547;" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="40.0" />
       <Label alignment="CENTER" layoutX="10.0" layoutY="6.0" style="-fx-background-color: #f0f0f0;" text="Message Content" textFill="#098547" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="0.0">
@@ -19,7 +19,7 @@
       <AnchorPane layoutX="138.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
          <children>
             <ImageView fx:id="MessagePicture" fitHeight="200.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <JFXButton style="-fx-background-color: #f0f0f0;" text="Upload Picture" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="210.0">
+            <JFXButton onAction="#UploadImage" style="-fx-background-color: #f0f0f0;" text="Upload Picture" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="210.0">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
