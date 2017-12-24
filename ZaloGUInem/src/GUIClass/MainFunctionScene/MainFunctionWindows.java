@@ -2,6 +2,7 @@ package GUIClass.MainFunctionScene;
 
 import DataObject.FunctionCustomized.SplitPhonenumber;
 import DataObject.FunctionCustomized.UserFunction;
+import DataObject.InOutObject.ExportToExcel;
 import DataObject.User.UserClass;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -21,7 +22,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,6 +64,7 @@ public class MainFunctionWindows implements Initializable {
     /*
     Class Variables
      */
+
     private String[] UserPhoneList = null;
     private List<UserClass> ListCustomerFound = new ArrayList<>();
 
@@ -161,7 +166,7 @@ public class MainFunctionWindows implements Initializable {
     /*
     Get Observable List customer từ số điện thoại khi bấm nút.
      */
-    private ObservableList<UserClass> getCustomer (){
+    public ObservableList<UserClass> getCustomer (){
         ObservableList<UserClass> obCarlist = FXCollections.observableArrayList();
         if (!ListCustomerFound.isEmpty()){
             for (UserClass c: ListCustomerFound) {
@@ -169,6 +174,12 @@ public class MainFunctionWindows implements Initializable {
             }
         }
         return obCarlist;
+    }
+
+    //ToDO: Bắt đầu thực hiện hàm export sang file Excel
+    @FXML
+    private void ExportBtn() throws IOException {
+        ExportToExcel ex = new ExportToExcel(getCustomer());
     }
 
     /*

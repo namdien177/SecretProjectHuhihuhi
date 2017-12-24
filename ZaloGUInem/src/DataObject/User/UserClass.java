@@ -71,4 +71,9 @@ public class UserClass {
     public void setUserPhone(String userPhone) {
         UserPhone = userPhone;
     }
+
+    @Override
+    public String toString() {
+        return displayName;
+    }
 }

@@ -1,5 +1,6 @@
 package GUIClass.MainFunctionScene;
 
+import DataObject.FunctionCustomized.ImageUploadFunction;
 import DataObject.FunctionCustomized.MessageFunction;
 import DataObject.User.UserClass;
 import com.jfoenix.controls.JFXButton;
@@ -22,7 +23,10 @@ public class MessageWindows {
     public JFXTextArea MessageContentInput;
     public JFXButton SendMessageBtn;
     public JFXButton CancelBtn;
-
+    /*
+    * Hàm xử lý nút SendMessageBtnClicked
+    *
+    * */
     @FXML
     private void SendMessageBtnClicked(){
         if (!CustomerZalo.isEmpty()){
@@ -43,7 +47,7 @@ public class MessageWindows {
 
     @FXML
     private void UploadImage(){
-        uploadFileID = new MessageFunction().getIDUploadPicture();
+        uploadFileID = new ImageUploadFunction().getIDUploadPicture();
     }
 
     @FXML
