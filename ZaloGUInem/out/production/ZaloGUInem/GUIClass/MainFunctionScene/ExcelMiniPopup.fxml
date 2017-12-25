@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="400.0" style="-fx-border-color: #098547; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIClass.MainFunctionScene.ExcelMiniPopup">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Export Excel file with name" textFill="#6c6c6c" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -25,6 +24,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="abortBtn" layoutX="219.0" layoutY="85.0" style="-fx-background-color: #898989; -fx-background-radius: 0px;" text="Abort" textFill="WHITE" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="10.0" />
+      <JFXButton fx:id="abortBtn" layoutX="219.0" layoutY="85.0" onAction="#ExitBtnPress" style="-fx-background-color: #898989; -fx-background-radius: 0px;" text="Abort" textFill="WHITE" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="10.0" />
    </children>
 </AnchorPane>

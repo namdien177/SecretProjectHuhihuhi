@@ -215,17 +215,27 @@ public class MainFunctionWindows implements Initializable {
 
     @FXML
     private void ExportBtnPressed() throws IOException {
+
         if (!ListCustomerFound.isEmpty()){
+
             ObservableList<UserClass> obserb = FXCollections.observableArrayList();
-            obserb.addAll(ListCustomerFound);
-            ExcelMiniPopup.getCustomer = obserb;
-            System.out.println("List does not empty");
+            for (UserClass c: ListCustomerFound) {
+                obserb.addAll(c);
+            }
+
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("ExcelMiniPopup.fxml"));
             Stage newstage = new Stage();
             newstage.setScene(new Scene(anchorPane));
             newstage.initStyle(StageStyle.UNDECORATED);
             newstage.initModality(Modality.APPLICATION_MODAL);
             newstage.showAndWait();
+
+            String fileName = ExcelMiniPopup.namefile;
+            if (ExcelMiniPopup.exportcondtion){
+                ExportToExcel exportFunction = new ExportToExcel(ListCustomerFound,fileName);
+                ExcelMiniPopup.exportcondtion = false;
+                ExcelMiniPopup.namefile = null;
+            }
         }
     }
 

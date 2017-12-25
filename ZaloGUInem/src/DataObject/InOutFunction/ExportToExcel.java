@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class ExportToExcel {
     MainFunctionWindows main = new MainFunctionWindows();
@@ -19,7 +20,7 @@ public class ExportToExcel {
     public ExportToExcel(){
 
     }
-    public ExportToExcel(ObservableList<UserClass> list, String filename) throws IOException {
+    public ExportToExcel(List<UserClass> list, String filename) throws IOException {
         row = sheet.createRow(0);
         row.createCell(0).setCellValue("UserID");
         row.createCell(1).setCellValue("Display Name");

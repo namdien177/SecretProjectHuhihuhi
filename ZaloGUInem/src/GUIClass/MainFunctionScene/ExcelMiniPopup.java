@@ -21,22 +21,23 @@ public class ExcelMiniPopup {
     /*
     Class Variables
      */
-    public static ObservableList<UserClass> getCustomer;
-
+    public static String namefile = null;
+    public static boolean exportcondtion = false;
     /*
     Export as Excel
      */
     @FXML
-    private void ExportBtn() throws IOException {
-        if (getCustomer != null){
-            new ExportToExcel(getCustomer,excelNameInput.getText());
-        }
+    private void ExportBtn() {
+        namefile = excelNameInput.getText();
+        exportcondtion = true;
         Stage thisStage = (Stage) abortBtn.getScene().getWindow();
         thisStage.close();
     }
 
     @FXML
     private void ExitBtnPress(){
+        exportcondtion = false;
+        namefile = null;
         Stage thisStage = (Stage) abortBtn.getScene().getWindow();
         thisStage.close();
     }
