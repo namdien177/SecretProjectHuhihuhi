@@ -29,8 +29,10 @@ public class ExcelMiniPopup {
     @FXML
     private void ExportBtn() throws IOException {
         if (getCustomer != null){
-            ExportToExcel ex = new ExportToExcel(getCustomer,excelNameInput.getText());
+            new ExportToExcel(getCustomer,excelNameInput.getText());
         }
+        Stage thisStage = (Stage) abortBtn.getScene().getWindow();
+        thisStage.close();
     }
 
     @FXML
