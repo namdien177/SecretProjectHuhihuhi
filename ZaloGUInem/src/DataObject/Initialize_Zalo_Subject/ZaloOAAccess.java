@@ -8,6 +8,11 @@ import com.vng.zalo.sdk.oa.ZaloOaInfo;
 
 public class ZaloOAAccess {
 
+    /*
+    Initialize method to get ZaloOaClient
+    * OA_ID : string ID of OA
+    * Token : string secret string given by Zalo
+     */
     public ZaloOaClient GetZaloUserClient(String OA_ID, String Token){
         ZaloOaInfo Information = new ZaloOaInfo(Long.parseLong(OA_ID),Token);
         return new ZaloOaClient(Information);   // zalo for developer
@@ -53,30 +58,5 @@ public class ZaloOAAccess {
         Convert string dạng Json sang Java class và return.
          */
         return gson.fromJson(result,ImageClass.class);
-    }
-
-    public boolean CheckSendingCondition(JsonObject json){
-        Gson gson = new Gson();
-        JsonPrimitive booleanvalue = gson.fromJson(json.getAsJsonPrimitive("errorCode"), JsonPrimitive.class);
-        return booleanvalue.getAsBoolean();
-    }
-}
-
-class messCondition{
-    private boolean errorCode;
-
-    public messCondition() {
-    }
-
-    public messCondition(boolean errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public boolean getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(boolean errorCode) {
-        this.errorCode = errorCode;
     }
 }

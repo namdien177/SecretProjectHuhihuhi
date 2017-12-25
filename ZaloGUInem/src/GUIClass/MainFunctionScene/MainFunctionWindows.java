@@ -4,6 +4,7 @@ import DataObject.FunctionCustomized.SplitPhonenumber;
 import DataObject.FunctionCustomized.UserFunction;
 import DataObject.User.UserClass;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,6 +44,7 @@ public class MainFunctionWindows implements Initializable {
     public JFXButton SendMessageBtn;
     public TableView<UserClass> ListCustomer;
     public AnchorPane rootPane;
+    public JFXProgressBar progressBar;
 
     /////////////////////////Setup columns of List customer//////////////////////////////
     @FXML
@@ -62,6 +65,7 @@ public class MainFunctionWindows implements Initializable {
      */
     private String[] UserPhoneList = null;
     private List<UserClass> ListCustomerFound = new ArrayList<>();
+    private static double ProgressPercentage = 0;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,6 +138,9 @@ public class MainFunctionWindows implements Initializable {
         });
     }
 
+    public void setProgress (double percentage){
+        progressBar.setProgress(percentage);
+    }
 
     /*
     Method [On Action] lấy toàn bộ text từ textarea và tách nó thành các số điện thoại hoàn chỉnh để đưa vào list

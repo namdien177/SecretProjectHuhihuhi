@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -46,6 +47,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
+            <JFXProgressBar fx:id="progressBar" layoutX="10.0" layoutY="386.0" prefWidth="280.0" progress="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+            <Label layoutX="10.0" layoutY="361.0" text="Sending Message Progress" textFill="#696969">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="300.0" layoutY="80.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="490.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">

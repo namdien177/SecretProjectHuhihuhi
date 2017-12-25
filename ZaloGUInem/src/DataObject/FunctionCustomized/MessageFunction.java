@@ -12,12 +12,21 @@ public class MessageFunction {
 
     private ZaloOaClient oaClient;
 
+    /*
+    Initialize to get ZaloOaClient
+     */
     public MessageFunction(){
         String oaid = "3093468968868500357";
         String secrect = "45d724RKDL25pKu1LJ1R";
         this.oaClient = new ZaloOAAccess().GetZaloUserClient(oaid, secrect);
     }
 
+    /*
+    Sending message to user on Zalo.
+    * anUser: UserClass
+    * message: String
+    * return boolean if succeed
+     */
     public boolean SendMessage(UserClass anUser, String message){
         try {
             JsonObject profile = oaClient.sendTextMessage(anUser.getUserId(),message);
