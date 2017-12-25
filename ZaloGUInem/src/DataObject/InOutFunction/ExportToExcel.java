@@ -19,7 +19,7 @@ public class ExportToExcel {
     public ExportToExcel(){
 
     }
-    public ExportToExcel(ObservableList<UserClass> list) throws IOException {
+    public ExportToExcel(ObservableList<UserClass> list, String filename) throws IOException {
         row = sheet.createRow(0);
         row.createCell(0).setCellValue("UserID");
         row.createCell(1).setCellValue("Display Name");
@@ -31,14 +31,14 @@ public class ExportToExcel {
             CreateRow(user,index);
             index++;
         }
-        FileOutputStream fileOut = new FileOutputStream("UserDetail.xlsx");
+        FileOutputStream fileOut = new FileOutputStream(filename+".xlsx");
         wb.write(fileOut);
         fileOut.close();
         System.out.println("export done!");
 
     }
 
-    public void CreateRow(UserClass user, int Index){
+    private void CreateRow(UserClass user, int Index){
         /*
         * Khởi tạo giá trị header cho file excel
         *Rownum mặc định là 0

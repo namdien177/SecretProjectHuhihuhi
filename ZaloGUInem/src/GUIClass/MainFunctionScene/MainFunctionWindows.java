@@ -167,10 +167,6 @@ public class MainFunctionWindows implements Initializable {
         }
         LoadCustomerListTable();    //Load list customer hiển thị lên bảng.
     }
-    @FXML
-    private void ExportBtn() throws IOException {
-        ExportToExcel ex = new ExportToExcel(getCustomer());
-    }
 
     /*
     Get Observable List customer từ số điện thoại khi bấm nút.
@@ -209,6 +205,22 @@ public class MainFunctionWindows implements Initializable {
             MessageWindows.CustomerZalo = ListCustomerFound;
             System.out.println("List does not empty");
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("MessageWindows.fxml"));
+            Stage newstage = new Stage();
+            newstage.setScene(new Scene(anchorPane));
+            newstage.initStyle(StageStyle.UNDECORATED);
+            newstage.initModality(Modality.APPLICATION_MODAL);
+            newstage.showAndWait();
+        }
+    }
+
+    @FXML
+    private void ExportBtnPressed() throws IOException {
+        if (!ListCustomerFound.isEmpty()){
+            ObservableList<UserClass> obserb = FXCollections.observableArrayList();
+            obserb.addAll(ListCustomerFound);
+            ExcelMiniPopup.getCustomer = obserb;
+            System.out.println("List does not empty");
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("ExcelMiniPopup.fxml"));
             Stage newstage = new Stage();
             newstage.setScene(new Scene(anchorPane));
             newstage.initStyle(StageStyle.UNDECORATED);

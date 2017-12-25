@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="400.0" style="-fx-border-color: #098547; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIClass.MainFunctionScene.ExcelMiniPopup">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Export Excel file with name" textFill="#6c6c6c" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="excelNameInput" layoutX="14.0" layoutY="48.0" prefHeight="26.0" prefWidth="293.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="45.0" />
+      <Label layoutX="308.0" layoutY="52.0" text=".xlsx" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="45.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="exportBtn" layoutX="14.0" layoutY="81.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#ExportBtn" prefWidth="200.0" style="-fx-background-color: #48bc00; -fx-background-radius: 0px;" text="Export now" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="abortBtn" layoutX="219.0" layoutY="85.0" style="-fx-background-color: #898989; -fx-background-radius: 0px;" text="Abort" textFill="WHITE" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="10.0" />
+   </children>
+</AnchorPane>

@@ -61,7 +61,7 @@
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy></TableView>
-            <JFXButton fx:id="ExportBtn" layoutX="10.0" layoutY="372.0" onAction="#ExportBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ff5733; -fx-background-radius: 0; -fx-border-radius: 0;" text="Export to Excel" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="215.0">
+            <JFXButton fx:id="ExportBtn" layoutX="10.0" layoutY="372.0" onAction="#ExportBtnPressed" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ff5733; -fx-background-radius: 0; -fx-border-radius: 0;" text="Export to Excel" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="215.0">
                <font>
                   <Font size="18.0" />
                </font>
