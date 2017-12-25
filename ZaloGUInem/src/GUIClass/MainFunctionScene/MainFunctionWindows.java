@@ -2,6 +2,7 @@ package GUIClass.MainFunctionScene;
 
 import DataObject.FunctionCustomized.SplitPhonenumber;
 import DataObject.FunctionCustomized.UserFunction;
+import DataObject.InOutFunction.ExportToExcel;
 import DataObject.User.UserClass;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
@@ -165,6 +166,10 @@ public class MainFunctionWindows implements Initializable {
             }
         }
         LoadCustomerListTable();    //Load list customer hiển thị lên bảng.
+    }
+    @FXML
+    private void ExportBtn() throws IOException {
+        ExportToExcel ex = new ExportToExcel(getCustomer());
     }
 
     /*
