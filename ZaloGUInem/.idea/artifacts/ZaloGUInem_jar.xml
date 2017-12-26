@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ZaloGUInem:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ZaloGUInem_jar</output-path>
+    <root id="archive" name="ZaloGUInem.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="ZaloGUInem" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/commons-collections4-4.1-bin/commons-collections4-4.1/commons-collections4-4.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/poi-3.17/ooxml-lib/xmlbeans-2.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/zalo-java-sdk-1.0-SNAPSHOT.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/jfoenix-9.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/poi-3.17/poi-excelant-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/poi-3.17/poi-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/poi-3.17/poi-ooxml-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/poi-3.17/poi-examples-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/poi-3.17/poi-ooxml-schemas-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/poi-3.17/poi-scratchpad-3.17.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

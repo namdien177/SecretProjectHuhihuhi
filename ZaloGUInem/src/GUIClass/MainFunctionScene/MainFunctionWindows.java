@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -115,6 +116,7 @@ public class MainFunctionWindows implements Initializable {
                 SendMessageBtn.setDisable(true);
             }
         }));*/
+        ListCustomer.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         ListCustomer.getItems().addListener((ListChangeListener<UserClass>) c -> {
             if (!ListCustomer.getItems().isEmpty()) {
                 SendMessageBtn.setDisable(false);
@@ -206,60 +208,69 @@ public class MainFunctionWindows implements Initializable {
      */
     @FXML
     private void SendMessageToAll() throws IOException {
-        setProgress(progressBarImage,0);
-        setProgress(progressBarMessage,0);
-        if (!ListCustomerFound.isEmpty()){
-
-            //calling scene
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("MessageWindows.fxml"));
-            Stage newstage = new Stage();
-            newstage.setScene(new Scene(anchorPane));
-            newstage.initStyle(StageStyle.UNDECORATED);
-            newstage.initModality(Modality.APPLICATION_MODAL);
-            newstage.showAndWait();
-
-            if (MessageWindows.StartSend){
-                //counting variables
-                double numberUserSendMessage = 0;
-                double numberUserSendImage = 0;
-                List<UserClass> ListUserMessageFailed=new ArrayList<>();
-                List<UserClass> ListUserImageFailed=new ArrayList<>();
-
-                for (UserClass user :
-                        ListCustomerFound) {
-                    boolean resultMess = false;
-                    boolean resultImg = false;
-
-                    //Send Message
-                    if (MessageWindows.AbsolutePath != null || !MessageWindows.AbsolutePath.equals("")){
-                        resultImg = new ImageUploadFunction().SendImage_Gif(user,MessageWindows.PictureMessage,MessageWindows.AbsolutePath);
-                    }
-                    if (MessageWindows.MessageContent != null || !MessageWindows.MessageContent.equals(""))
-                        resultMess = new MessageFunction().SendMessage(user,MessageWindows.MessageContent);
-
-                    //set progress on bar
-                    if (resultMess){
-                        numberUserSendMessage++;
-                        setProgress(progressBarMessage,numberUserSendMessage/ListCustomerFound.size());
-                        System.out.println(numberUserSendMessage);
-                    }else {
-                        ListUserMessageFailed.add(user);        //add user which failed to send
-                    }
-                    if (resultImg){
-                        numberUserSendImage++;
-                        setProgress(progressBarImage,numberUserSendImage/ListCustomerFound.size());
-                    }else {
-                        ListUserImageFailed.add(user);        //add user which failed to send
-                    }
-                }
-                //return initial state of the scene
-                MessageWindows.StartSend = false;
-                MessageWindows.AbsolutePath = null;
-                MessageWindows.MessageContent = null;
-                MessageWindows.PictureMessage = null;
+        setProgress(progressBarImage, 0);
+        setProgress(progressBarMessage, 0);
+        List<UserClass> multiple = ListCustomer.getSelectionModel().getSelectedItems();
+        if (!multiple.isEmpty()) {
+            ListCustomerFound.clear();
+            for (UserClass row : multiple
+                    ) {
+                ListCustomerFound.add(row);
             }
         }
-    }
+            if (!ListCustomerFound.isEmpty()) {
+
+                //calling scene
+                AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("MessageWindows.fxml"));
+                Stage newstage = new Stage();
+                newstage.setScene(new Scene(anchorPane));
+                newstage.initStyle(StageStyle.UNDECORATED);
+                newstage.initModality(Modality.APPLICATION_MODAL);
+                newstage.showAndWait();
+
+                if (MessageWindows.StartSend) {
+                    //counting variables
+                    double numberUserSendMessage = 0;
+                    double numberUserSendImage = 0;
+                    List<UserClass> ListUserMessageFailed = new ArrayList<>();
+                    List<UserClass> ListUserImageFailed = new ArrayList<>();
+
+                    for (UserClass user :
+                            ListCustomerFound) {
+                        boolean resultMess = false;
+                        boolean resultImg = false;
+
+                        //Send Message
+                        if (MessageWindows.AbsolutePath != null) {
+                            resultImg = new ImageUploadFunction().SendImage_Gif(user, MessageWindows.PictureMessage, MessageWindows.AbsolutePath);
+                        }
+                        if (MessageWindows.MessageContent != null || !MessageWindows.MessageContent.equals(""))
+                            resultMess = new MessageFunction().SendMessage(user, MessageWindows.MessageContent);
+
+                        //set progress on bar
+                        if (resultMess) {
+                            numberUserSendMessage++;
+                            setProgress(progressBarMessage, numberUserSendMessage / ListCustomerFound.size());
+                            System.out.println(numberUserSendMessage);
+                        } else {
+                            ListUserMessageFailed.add(user);        //add user which failed to send
+                        }
+                        if (resultImg) {
+                            numberUserSendImage++;
+                            setProgress(progressBarImage, numberUserSendImage / ListCustomerFound.size());
+                        } else {
+                            ListUserImageFailed.add(user);        //add user which failed to send
+                        }
+                    }
+                    //return initial state of the scene
+                    MessageWindows.StartSend = false;
+                    MessageWindows.AbsolutePath = null;
+                    MessageWindows.MessageContent = null;
+                    MessageWindows.PictureMessage = null;
+                }
+            }
+        }
+
 
     @FXML
     private void ExportBtnPressed() throws IOException {
