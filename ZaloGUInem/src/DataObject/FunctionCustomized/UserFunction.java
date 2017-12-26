@@ -2,16 +2,9 @@ package DataObject.FunctionCustomized;
 
 import DataObject.Initialize_Zalo_Subject.ZaloOAAccess;
 import DataObject.User.UserClass;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.vng.zalo.sdk.APIException;
-import com.vng.zalo.sdk.ZaloUser;
 import com.vng.zalo.sdk.oa.ZaloOaClient;
-import com.vng.zalo.sdk.oa.ZaloOaInfo;
-
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UserFunction {
     public UserClass GetUserInformation(String Phonenumber){

@@ -1,5 +1,7 @@
 package GUIClass.MainFunctionScene;
 
+import DataObject.FunctionCustomized.ImageUploadFunction;
+import DataObject.FunctionCustomized.MessageFunction;
 import DataObject.FunctionCustomized.SplitPhonenumber;
 import DataObject.FunctionCustomized.UserFunction;
 import DataObject.InOutFunction.ExportToExcel;
@@ -45,19 +47,24 @@ public class MainFunctionWindows implements Initializable {
     public JFXButton SendMessageBtn;
     public TableView<UserClass> ListCustomer;
     public AnchorPane rootPane;
-    public JFXProgressBar progressBar;
+    public JFXProgressBar progressBarMessage;
+    public JFXProgressBar progressBarImage;
 
     /////////////////////////Setup columns of List customer//////////////////////////////
     @FXML
+    private
     TableColumn<UserClass,Long> IDCustCol = new TableColumn<>("Customer ID");
 
     @FXML
+    private
     TableColumn<UserClass,String> CustNameCol = new TableColumn<>("Customer name");
 
     @FXML
+    private
     TableColumn<UserClass,String> GenderCol = new TableColumn<>("Gender");
 
     @FXML
+    private
     TableColumn<UserClass,String> PhoneCustCol = new TableColumn<>("Phone number");
 
     /////////////////////////////////////////////////////////////////////////////////////
@@ -121,26 +128,24 @@ public class MainFunctionWindows implements Initializable {
         ////////////////////////////////////////////////////////////////////////////
 
         /*
-        Adding listener cho textarea để enable button.
-
+        Adding listener cho textarea để enable button.*/
         PhoneField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null || newValue != ""){
-                AddBtn.setDisable(false);
-            }else{
+            if (observable == null || newValue == null || newValue.isEmpty() || newValue.length() <8 || newValue.equals("")){
                 AddBtn.setDisable(true);
-            }
-        });*/
-        PhoneField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (observable == null){
-                AddBtn.setDisable(true);
+                SendMessageBtn.setDisable(true);
             }else {
                 AddBtn.setDisable(false);
+                SendMessageBtn.setDisable(false);
             }
         });
+
+        //progress bar//
+        progressBarMessage.setProgress(0);
+        progressBarImage.setProgress(0);
     }
 
-    public void setProgress (double percentage){
-        progressBar.setProgress(percentage);
+    public void setProgress (JFXProgressBar whichBar,double percentage){
+        whichBar.setProgress(percentage);
     }
 
     /*
@@ -201,15 +206,58 @@ public class MainFunctionWindows implements Initializable {
      */
     @FXML
     private void SendMessageToAll() throws IOException {
+        setProgress(progressBarImage,0);
+        setProgress(progressBarMessage,0);
         if (!ListCustomerFound.isEmpty()){
-            MessageWindows.CustomerZalo = ListCustomerFound;
-            System.out.println("List does not empty");
+
+            //calling scene
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("MessageWindows.fxml"));
             Stage newstage = new Stage();
             newstage.setScene(new Scene(anchorPane));
             newstage.initStyle(StageStyle.UNDECORATED);
             newstage.initModality(Modality.APPLICATION_MODAL);
             newstage.showAndWait();
+
+            if (MessageWindows.StartSend){
+                //counting variables
+                double numberUserSendMessage = 0;
+                double numberUserSendImage = 0;
+                List<UserClass> ListUserMessageFailed=new ArrayList<>();
+                List<UserClass> ListUserImageFailed=new ArrayList<>();
+
+                for (UserClass user :
+                        ListCustomerFound) {
+                    boolean resultMess = false;
+                    boolean resultImg = false;
+
+                    //Send Message
+                    if (MessageWindows.AbsolutePath != null || !MessageWindows.AbsolutePath.equals("")){
+                        resultImg = new ImageUploadFunction().SendImage_Gif(user,MessageWindows.PictureMessage,MessageWindows.AbsolutePath);
+                    }
+                    if (MessageWindows.MessageContent != null || !MessageWindows.MessageContent.equals(""))
+                        resultMess = new MessageFunction().SendMessage(user,MessageWindows.MessageContent);
+
+                    //set progress on bar
+                    if (resultMess){
+                        numberUserSendMessage++;
+                        setProgress(progressBarMessage,numberUserSendMessage/ListCustomerFound.size());
+                        System.out.println(numberUserSendMessage);
+                    }else {
+                        ListUserMessageFailed.add(user);        //add user which failed to send
+                    }
+                    if (resultImg){
+                        numberUserSendImage++;
+                        setProgress(progressBarImage,numberUserSendImage/ListCustomerFound.size());
+                    }else {
+                        ListUserImageFailed.add(user);        //add user which failed to send
+                    }
+                }
+                //return initial state of the scene
+                MessageWindows.StartSend = false;
+                MessageWindows.AbsolutePath = null;
+                MessageWindows.MessageContent = null;
+                MessageWindows.PictureMessage = null;
+            }
         }
     }
 
